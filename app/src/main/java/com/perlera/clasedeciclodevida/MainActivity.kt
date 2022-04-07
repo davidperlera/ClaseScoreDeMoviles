@@ -1,5 +1,6 @@
 package com.perlera.clasedeciclodevida
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var teamBScoreTextView: TextView
     private lateinit var teamAAddButton: Button
     private lateinit var teamBAddButton: Button
+    private lateinit var saveButton: Button
 
     //Data
     private var scoreTeamA = 0
@@ -50,6 +52,21 @@ class MainActivity : AppCompatActivity() {
             scoreTeamB++
             updateVisualScore(teamBScoreTextView, scoreTeamB)
         }
+
+        saveButton.setOnClickListener{
+            onSave()
+        }
+    }
+
+    //funcion para guardar
+    private fun onSave(){
+        Log.d(TAG, "onSave")
+        //Intent
+        val intent = Intent(this, ScoreActivity::class.java)
+        //con esto ya mandamos los datos xd
+        intent.putExtra(KEY_SCORE_TEAM_A, scoreTeamA)
+        intent.putExtra(KEY_SCORE_TEAM_B, scoreTeamB)
+        startActivity(intent)
     }
 
     private fun updateVisualScore(view: TextView, score: Int){
@@ -58,11 +75,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun bind(){
         //team A
-        teamAScoreTextView = findViewById(R.id.score_team_a_text_view)
+        teamAScoreTextView = findViewById(R.id.status_team_a_text_view)
         teamAAddButton = findViewById(R.id.action_add_one_team_a)
         //team B
         teamBScoreTextView = findViewById(R.id.score_team_b_text_view)
         teamBAddButton = findViewById(R.id.action_add_one_team_b)
+        //Save
+        saveButton = findViewById(R.id.action_Save)
     }
 
     private fun setupScores(savedInstanceState: Bundle?) {
@@ -111,8 +130,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG = MainActivity::class.simpleName
-        private const val KEY_SCORE_TEAM_A = "ScoreTeamA"
-        private const val KEY_SCORE_TEAM_B = "ScoreTeamB"
+        const val KEY_SCORE_TEAM_A = "ScoreTeamA"
+        const val KEY_SCORE_TEAM_B = "ScoreTeamB"
         //automaticamente va a tomar el nombre de la actividad
     }
 }

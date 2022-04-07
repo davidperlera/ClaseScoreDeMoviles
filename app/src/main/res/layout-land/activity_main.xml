@@ -21,7 +21,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <TextView
-            android:id="@+id/score_team_a_text_view"
+            android:id="@+id/status_team_a_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_gap"
@@ -38,13 +38,13 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_height="match_parent"
-        android:layout_width="@dimen/divider_size"
-        android:layout_marginTop="@dimen/default_gap"
+    <Button
+        android:id="@+id/action_Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_save"
         android:layout_marginBottom="@dimen/default_gap"
-        android:background="@color/black"
-        />
+        android:layout_gravity="bottom"/>
 
     <LinearLayout
         android:layout_width="0dp"
